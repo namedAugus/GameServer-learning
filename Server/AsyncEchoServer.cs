@@ -74,7 +74,7 @@ namespace EchoServer
                 Socket clientfd = clientState.socket;
                 int count = clientState.socket.EndReceive(ar);
                 //客户端关闭
-                if (count == 0)
+                if (count == 0) //小于等于0时表示socket连接断开了，但有一种特殊情况，此处先不处理(潜在bug)
                 {
                     clientState.socket.Close();
                     clients.Remove(clientfd);
